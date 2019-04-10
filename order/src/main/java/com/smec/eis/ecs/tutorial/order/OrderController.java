@@ -11,11 +11,12 @@ import java.util.Date;
 public class OrderController {
 
     private final OrderRepository orderRepository;
-    private final DeliveryClient deliveryClient;
+    private final WarehouseClient warehouseClient;
 
-    public OrderController(OrderRepository orderRepository, DeliveryClient deliveryClient) {
+    public OrderController(OrderRepository orderRepository,
+                           WarehouseClient warehouseClient) {
         this.orderRepository = orderRepository;
-        this.deliveryClient = deliveryClient;
+        this.warehouseClient = warehouseClient;
     }
 
     @PostMapping("/{itemName}")
@@ -27,7 +28,7 @@ public class OrderController {
         DeliveryDTO delivery = new DeliveryDTO();
         delivery.setAddress("Shanghai");
         delivery.setItemName(itemName);
-        Long deliveryId = deliveryClient.createDelivery(delivery);
+        Long deliveryId = warehouseClient.createDelivery(delivery);
         order.setDeliveryId(deliveryId);
         orderRepository.save(order);
         return order.getId();
