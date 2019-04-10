@@ -11,6 +11,7 @@
         <module>order</module>
         <module>warehouse</module>
         <module>discovery</module>
+        <module>gateway</module>
     </modules>
     <packaging>pom</packaging>
 
